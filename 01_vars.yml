@@ -29,4 +29,4 @@
   - name: Is httpd running
     debug:
       msg: httpd is running for the hills
-    when: http_status.state == "started"
+    when: httd_status.state == "started"
