@@ -7,7 +7,7 @@
   vars:
     ansible_password: "{{ windows_password }}"
   tasks:
-  - name: Install IIS (Web-Server only)
-    win_feature:
-      name: Web-Server
-      state: present
+    - name: Install IIS (Web-Server only)
+      win_feature:
+        name: Web-Server
+        state: present
