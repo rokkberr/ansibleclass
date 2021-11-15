@@ -3,4 +3,7 @@
   tasks:
   - name: Debug Facts
     ansible.builtin.debug:
+      msg: "{{ ansible_facts }}"
+  - name: Debug Facts Hostname - Unsafe Sexts
+    ansible.builtin.debug:
       msg: "{{ ansible_facts['nodename'] }}"
