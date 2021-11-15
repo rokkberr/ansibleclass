@@ -1,6 +1,6 @@
 ---
 - hosts: linuxservers
-  become: yes
+  become: true
 
   tasks:
   - name: Create file
@@ -11,5 +11,3 @@
     lineinfile:
       path: /root/testfile.txt
       line: Ansible was there - right over there. You missed it.
-
-
