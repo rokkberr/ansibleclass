@@ -32,7 +32,7 @@
       resource_group: "{{ resource_group }}"
       name: public_ip_webserver-{{ item }}
       allocation_method: static
-      domain_name: "webserver{{ domain_sub }}"
+      domain_name: "webserver{{ domain_sub }}-{{ item }}"
       tags:
           solution: "webserver_{{ user }}"
           delete: ansibletraining
