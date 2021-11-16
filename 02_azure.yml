@@ -30,12 +30,16 @@
   - name: Create a public ip address for webserver
     azure_rm_publicipaddress:
       resource_group: "{{ resource_group }}"
-      name: public_ip_webserver
+      name: public_ip_webserver-{{ item }}
       allocation_method: static
       domain_name: "webserver{{ domain_sub }}"
       tags:
           solution: "webserver_{{ user }}"
           delete: ansibletraining
+    loop:
+        - rip
+        - rap
+        - rup
     register: webserver_pub_ip
 
   - name: Create Security Group for webserver
@@ -68,21 +72,21 @@
       subnet_name: "{{ subnet }}"
       security_group: "webserver_securitygroup"
       ip_configurations:
-        - name: "webserver_nic01_ipconfig"
-          public_ip_address_name: "public_ip_webserver"
+        - name: "webserver_nic01_ipconfig-{{ item }}"
+          public_ip_address_name: "public_ip_webserver-{{ item }}"
           primary: True
       tags:
           solution: "webserver_{{ user }}"
           delete: ansibletraining
+    loop:
+        - rip
+        - rap
+        - rup
 
   - name: Create a VM webserver
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
       name: "webserver-{{ item }}"
-      loop:
-        - rip
-        - rap
-        - rup
       os_type: Linux
       admin_username: "{{ user }}"
       ssh_password_enabled: false
@@ -101,6 +105,10 @@
       tags:
           solution: "webserver_{{ user }}"
           delete: ansibletraining
+    loop:
+        - rip
+        - rap
+        - rup
 
   - name: Show webserver public ip
     debug:
