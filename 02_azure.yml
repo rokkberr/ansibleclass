@@ -78,7 +78,11 @@
   - name: Create a VM webserver
     azure_rm_virtualmachine:
       resource_group: "{{ resource_group }}"
-      name: "webserver"
+      name: "webserver-{{ item }}"
+      loop:
+        - rip
+        - rap
+        - rup
       os_type: Linux
       admin_username: "{{ user }}"
       ssh_password_enabled: false
