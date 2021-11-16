@@ -12,7 +12,7 @@
 
   - name: Create user
     community.windows.win_domain_user:
-      name: pjuul
+      name: pjuulex
       firstname: Peter
       surname: Juul
       password: lilleSTORT!2
